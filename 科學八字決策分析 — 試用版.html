@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<!-- saved from url=(0115)file:///C:/Users/berne/Downloads/%E7%A7%91%E5%AD%B8%E5%85%AB%E5%AD%97_%E8%A9%A6%E7%94%A8%E7%89%88_IG_Landing_7.html -->
+<html lang="zh-TW"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#030608">
+<meta property="og:title" content="科學八字決策分析系統 — 免費試用">
+<meta property="og:description" content="你現在不是不努力，是可能用錯了決策節奏。">
+<title>科學八字決策分析 — 試用版</title>
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN TOKEN SYSTEM v2
+   黑金科技感 × 冷靜決策系統 × 高階操盤介面
+   ═══════════════════════════════════════════════ */
+:root{
+  --bg0:#030608;
+  --bg1:#070d14;
+  --bg2:#0b1420;
+  --bg3:#10192c;
+  --bg4:#162236;
+  --gold:#c8a84b;
+  --gold2:#e2c060;
+  --gold3:#9a7228;
+  --gold4:#5c4018;
+  --goldf:rgba(200,168,75,.15);
+  --text0:#dde2f0;
+  --text1:#8892b0;
+  --text2:#485878;
+  --text3:#2a3650;
+  --border:#0e1c2e;
+  --border2:#162438;
+  --borderg:rgba(200,168,75,.18);
+  --blue:#4090f0;
+  --blueg:rgba(40,90,160,.12);
+  --green:#30c870;
+  --red:#e04040;
+  --r:6px;
+  --corner:7px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{
+  scroll-behavior:smooth;
+  -webkit-tap-highlight-color:transparent;
+  background:#030608;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Noto Sans TC','Microsoft JhengHei',sans-serif;
+  background:#030608;
+  color:var(--text0);
+  font-size:15px;
+  line-height:1.65;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ─── GLOBAL GRID BACKGROUND ─── */
+body::before{
+  content:'';
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(200,168,75,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(200,168,75,.025) 1px,transparent 1px);
+  background-size:48px 48px;
+}
+body::after{
+  content:'';
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(40,80,140,.08) 0%,transparent 70%);
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg0)}
+::-webkit-scrollbar-thumb{background:var(--gold4);border-radius:2px}
+
+/* ─── LAYOUT ─── */
+.page-wrap{
+  position:relative;z-index:1;
+  max-width:480px;margin:0 auto;
+  background:#030608;
+  padding-bottom:calc(80px + env(safe-area-inset-bottom,0px));
+}
+
+/* ─── HUD CORNER MIXIN (via data attrs) ─── */
+/* Applied as .hud on any element */
+.hud{position:relative}
+.hud::before,.hud::after{
+  content:'';position:absolute;
+  width:var(--corner);height:var(--corner);
+  border-color:var(--gold3);border-style:solid;
+  opacity:.8;pointer-events:none;
+}
+.hud::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.hud::after {bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+
+/* ─── HEADER ─── */
+.site-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;
+  position:sticky;top:0;z-index:100;
+  background:rgba(3,6,8,.92);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border2);
+}
+.site-header::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold4),transparent);
+}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{
+  width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--gold4);
+  background:conic-gradient(from 0deg,var(--bg3),var(--bg4),var(--bg3));
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold);font-size:16px;
+  box-shadow:0 0 10px rgba(200,168,75,.15),inset 0 0 8px rgba(200,168,75,.05);
+  position:relative;
+}
+.logo::before{
+  content:'';position:absolute;inset:-3px;border-radius:50%;
+  border:1px solid rgba(200,168,75,.1);
+  animation:logo-pulse 4s ease infinite;
+}
+@keyframes logo-pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+.brand-text h1{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:1.5px}
+.brand-text p{font-size:9px;color:var(--text2);letter-spacing:2.5px;margin-top:1px}
+.trial-badge{
+  padding:3px 9px;border-radius:2px;
+  background:transparent;
+  border:1px solid var(--gold4);
+  color:var(--gold3);font-size:9px;
+  letter-spacing:2px;font-weight:700;
+  position:relative;
+}
+.trial-badge::before,.trial-badge::after{
+  content:'';position:absolute;
+  width:4px;height:4px;border-color:var(--gold);border-style:solid;
+}
+.trial-badge::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.trial-badge::after {bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+
+/* ─── HERO ─── */
+.hero{
+  padding:56px 20px 44px;
+  text-align:center;
+  background:#030608;
+  position:relative;
+  overflow:hidden;
+}
+
+/* SVG orbital watermark */
+.hero-orbital{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(360px,92vw);
+  height:min(360px,92vw);
+  pointer-events:none;
+  opacity:1;
+}
+.orb-ring-1{animation:orb-rot 40s linear infinite}
+.orb-ring-2{animation:orb-rot 28s linear infinite reverse;transform-origin:200px 200px}
+.orb-dot{animation:orb-orbit 20s linear infinite}
+@keyframes orb-rot{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes orb-orbit{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Radar scan */
+.hero-radar{
+  position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:min(300px,80vw);height:min(300px,80vw);
+  pointer-events:none;
+  border-radius:50%;
+  overflow:hidden;
+  opacity:.4;
+}
+.hero-radar::before{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  background:conic-gradient(
+    from 0deg,
+    transparent 0%,
+    rgba(200,168,75,.06) 15%,
+    rgba(200,168,75,.15) 20%,
+    transparent 21%
+  );
+  animation:radar-spin 6s linear infinite;
+}
+@keyframes radar-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+/* Data flow lines */
+.hero-dataflow{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.dfl{
+  position:absolute;width:1px;
+  background:linear-gradient(to bottom,transparent,rgba(200,168,75,.12),transparent);
+  animation:dfl-move 4s ease-in-out infinite;
+}
+.dfl:nth-child(1){left:15%;height:60%;top:-20%;animation-delay:0s}
+.dfl:nth-child(2){left:82%;height:45%;top:-10%;animation-delay:1.4s}
+.dfl:nth-child(3){left:48%;height:55%;top:-15%;animation-delay:2.8s}
+@keyframes dfl-move{0%{transform:translateY(0);opacity:0}20%{opacity:1}80%{opacity:1}100%{transform:translateY(120%);opacity:0}}
+
+/* Hero content */
+.hero-content{position:relative;z-index:2}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;color:var(--gold3);letter-spacing:4px;
+  text-transform:uppercase;margin-bottom:22px;
+  padding:5px 16px 5px 12px;
+  background:rgba(200,168,75,.05);
+  border:1px solid rgba(200,168,75,.15);
+  border-radius:2px;
+  position:relative;
+}
+.hero-eyebrow::before{
+  content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;
+  background:var(--gold);
+  box-shadow:0 0 8px var(--gold),0 0 16px rgba(200,168,75,.4);
+  animation:pulse-dot 2.5s ease infinite;
+}
+@keyframes pulse-dot{0%,100%{opacity:1;box-shadow:0 0 8px var(--gold)}50%{opacity:.4;box-shadow:0 0 4px var(--gold3)}}
+
+.hero h2{
+  font-size:clamp(21px,5.5vw,27px);
+  font-weight:800;
+  color:var(--text0);
+  line-height:1.38;
+  letter-spacing:.3px;
+  margin-bottom:16px;
+}
+.hero h2 em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--gold3) 0%,var(--gold) 40%,var(--gold2) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:13px;color:var(--text1);
+  line-height:1.8;max-width:320px;margin:0 auto 28px;
+}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:13px 28px;
+  background:linear-gradient(135deg,var(--gold4) 0%,var(--gold3) 50%,var(--gold) 100%);
+  color:#030608;
+  font-size:14px;font-weight:800;
+  border-radius:2px;border:none;cursor:pointer;
+  letter-spacing:2px;
+  box-shadow:0 0 20px rgba(200,168,75,.2),0 2px 8px rgba(0,0,0,.4);
+  transition:all .3s;
+  position:relative;overflow:hidden;
+}
+.hero-cta::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,.15) 50%,transparent 100%);
+  transform:translateX(-100%);
+  transition:transform .5s;
+}
+.hero-cta:hover::before{transform:translateX(100%)}
+.hero-cta:hover{box-shadow:0 0 32px rgba(200,168,75,.35),0 4px 16px rgba(0,0,0,.5);transform:translateY(-1px)}
+.hero-cta svg{flex-shrink:0;transition:transform .25s}
+.hero-cta:hover svg{transform:translateX(4px)}
+
+.hero-trust{
+  display:flex;align-items:center;justify-content:center;
+  gap:20px;margin-top:22px;
+}
+.trust-item{
+  display:flex;align-items:center;gap:5px;
+  font-size:10px;color:var(--text2);letter-spacing:.5px;
+}
+.trust-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--gold4);
+}
+
+/* ─── DIVIDER ─── */
+.sec-divider{
+  display:flex;align-items:center;gap:10px;
+  padding:0 20px;margin:10px 0;
+}
+.sec-divider::before,.sec-divider::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,var(--border2),transparent);
+}
+.sec-divider-inner{
+  display:flex;align-items:center;gap:6px;
+}
+.sec-diamond{
+  width:5px;height:5px;
+  border:1px solid var(--gold4);
+  transform:rotate(45deg);
+  flex-shrink:0;
+}
+.sec-divider-label{font-size:9px;color:var(--text3);letter-spacing:3px;white-space:nowrap}
+
+/* ─── FORM SECTION ─── */
+.form-section{padding:0 16px}
+
+.form-card{
+  background:var(--bg2);
+  border:1px solid var(--border2);
+  border-radius:var(--r);
+  overflow:visible;
+  position:relative;
+}
+.form-card::before,.form-card::after{
+  content:'';position:absolute;
+  width:10px;height:10px;
+  border-color:var(--gold4);border-style:solid;
+  z-index:2;
+}
+.form-card::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.form-card::after {bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+
+.form-card-header{
+  padding:12px 16px;
+  background:var(--bg3);
+  border-bottom:1px solid var(--border2);
+  display:flex;align-items:center;gap:10px;
+}
+.form-card-header-icon{
+  width:26px;height:26px;border-radius:3px;
+  background:rgba(200,168,75,.08);
+  border:1px solid var(--gold4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;
+}
+.form-card-title{font-size:10px;font-weight:700;color:var(--gold);letter-spacing:2.5px}
+.form-card-sub{font-size:10px;color:var(--text2);margin-top:2px;letter-spacing:.5px}
+.form-body{padding:16px}
+
+/* FORM GROUPS */
+.fg{margin-bottom:14px}
+.fg:last-child{margin-bottom:0}
+.fg label{
+  display:block;
+  font-size:10px;color:var(--text2);
+  letter-spacing:1px;margin-bottom:7px;
+  text-transform:uppercase;
+}
+.fg .req{color:var(--gold)}
+.fg input,.fg select{
+  width:100%;
+  background:var(--bg3);
+  border:1px solid var(--border2);
+  border-radius:3px;
+  padding:12px 14px;
+  color:var(--text0);
+  font-size:16px;
+  font-family:inherit;
+  transition:border-color .2s,box-shadow .2s;
+  -webkit-appearance:none;appearance:none;
+}
+.fg input:focus,.fg select:focus{
+  outline:none;
+  border-color:var(--gold4);
+  box-shadow:0 0 0 1px var(--gold4),0 0 12px rgba(200,168,75,.08);
+}
+.fg select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23485878' stroke-width='1.2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;
+}
+.fg select option{background:var(--bg3)}
+.fg input[type=date],.fg input[type=time]{color-scheme:dark}
+
+/* Gender */
+.gender-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.gender-opt{position:relative}
+.gender-opt input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.gender-opt label{
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:11px 12px;
+  background:var(--bg3);border:1px solid var(--border2);border-radius:3px;
+  cursor:pointer;font-size:14px;color:var(--text1);
+  letter-spacing:.5px;transition:all .2s;margin-bottom:0;
+}
+.gender-opt input[type=radio]:checked + label{
+  border-color:var(--gold4);background:rgba(200,168,75,.07);color:var(--gold);
+  box-shadow:inset 0 0 0 1px rgba(200,168,75,.1);
+}
+
+/* Question chips */
+.qtype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.qtype-chip{position:relative}
+.qtype-chip input[type=radio]{position:absolute;opacity:0;width:0;height:0}
+.qtype-chip label{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  padding:10px 6px;
+  background:var(--bg3);border:1px solid var(--border2);border-radius:3px;
+  cursor:pointer;font-size:12px;color:var(--text1);
+  transition:all .2s;text-align:center;margin-bottom:0;
+}
+.qtype-chip label .chip-icon{font-size:17px;line-height:1}
+.qtype-chip input[type=radio]:checked + label{
+  border-color:var(--gold4);background:rgba(200,168,75,.07);color:var(--gold);
+}
+
+/* Analyze button */
+.btn-analyze{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--gold4) 0%,var(--gold3) 60%,var(--gold) 100%);
+  color:#030608;font-size:14px;font-weight:800;
+  border-radius:3px;border:none;cursor:pointer;
+  letter-spacing:2.5px;
+  box-shadow:0 0 18px rgba(200,168,75,.18),0 2px 8px rgba(0,0,0,.4);
+  transition:all .25s;margin-top:6px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  position:relative;overflow:hidden;
+}
+.btn-analyze::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.btn-analyze:hover::before{transform:translateX(100%)}
+.btn-analyze:hover{box-shadow:0 0 28px rgba(200,168,75,.3);transform:translateY(-1px)}
+.btn-analyze.loading{pointer-events:none;opacity:.8}
+.spin{
+  width:16px;height:16px;
+  border:2px solid rgba(3,6,8,.2);border-top-color:#030608;
+  border-radius:50%;animation:spin .7s linear infinite;display:none;
+}
+.loading .spin{display:inline-block}
+.loading .btn-label{display:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* Form errors */
+.field-error{font-size:10px;color:var(--red);margin-top:5px;display:none;letter-spacing:.5px}
+.fg.has-error input,.fg.has-error select{border-color:var(--red)}
+.fg.has-error .field-error{display:block}
+
+/* ─── LOADING OVERLAY ─── */
+.analyzing-overlay{display:none;padding:36px 16px 28px;text-align:center;background:#030608}
+.analyzing-overlay.active{display:block}
+
+.ao-ring-wrap{position:relative;width:100px;height:100px;margin:0 auto 20px}
+.ao-ring-wrap svg{width:100px;height:100px;transform:rotate(-90deg)}
+.ao-ring-bg{fill:none;stroke:var(--border2);stroke-width:3}
+.ao-ring-fill{
+  fill:none;stroke:url(#aoRingGrad);stroke-width:3;stroke-linecap:round;
+  stroke-dasharray:276;stroke-dashoffset:276;transition:stroke-dashoffset .1s linear;
+}
+/* Outer decorative ring */
+.ao-ring-outer{
+  fill:none;stroke:rgba(200,168,75,.06);stroke-width:1;
+  animation:ao-outer-spin 8s linear infinite;
+  transform-origin:50px 50px;
+}
+.ao-ring-outer-dash{
+  fill:none;stroke:rgba(200,168,75,.12);stroke-width:1;
+  stroke-dasharray:4 20;
+  animation:ao-outer-spin 12s linear infinite reverse;
+  transform-origin:50px 50px;
+}
+@keyframes ao-outer-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.ao-pct-wrap{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+}
+.ao-pct{font-size:22px;font-weight:800;color:var(--gold);letter-spacing:-1px;line-height:1}
+.ao-pct-sym{font-size:10px;color:var(--gold3);font-weight:700;margin-top:2px;letter-spacing:1px}
+
+.ao-steps{display:flex;flex-direction:column;gap:7px;margin-bottom:8px}
+.ao-step{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 12px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:3px;text-align:left;transition:all .3s;
+}
+.ao-step.active{border-color:var(--gold4);background:rgba(200,168,75,.05)}
+.ao-step.done{border-color:rgba(48,200,112,.2);background:rgba(48,200,112,.04)}
+.ao-step-icon{
+  width:20px;height:20px;flex-shrink:0;border-radius:50%;
+  border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:10px;background:var(--bg3);transition:all .3s;color:var(--text3);
+}
+.ao-step.active .ao-step-icon{border-color:var(--gold4);color:var(--gold);background:rgba(200,168,75,.1)}
+.ao-step.done  .ao-step-icon{border-color:rgba(48,200,112,.35);color:var(--green);background:rgba(48,200,112,.1)}
+.ao-step-label{font-size:11px;color:var(--text2);letter-spacing:.5px;transition:color .3s}
+.ao-step.active .ao-step-label{color:var(--gold3)}
+.ao-step.done  .ao-step-label{color:var(--green)}
+.ao-subtitle{font-size:9px;color:var(--text3);letter-spacing:3px;margin-top:6px}
+
+/* ─── RESULT SECTION ─── */
+#resultSection{padding:0 16px;display:none;animation:fadeUp .5s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+.result-header{text-align:center;padding:24px 0 16px}
+.result-header-label{font-size:9px;color:var(--text3);letter-spacing:4px;margin-bottom:8px;text-transform:uppercase}
+.result-header-name{font-size:14px;font-weight:700;color:var(--text1);letter-spacing:1px}
+
+/* Phase card */
+.phase-card{
+  border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--border2);margin-bottom:10px;
+  position:relative;
+}
+.phase-card::before,.phase-card::after{
+  content:'';position:absolute;
+  width:10px;height:10px;
+  border-style:solid;z-index:2;
+}
+.phase-card::before{top:-1px;left:-1px;border-width:1px 0 0 1px;border-color:var(--gold3)}
+.phase-card::after {bottom:-1px;right:-1px;border-width:0 1px 1px 0;border-color:var(--gold3)}
+
+.phase-card-top{padding:18px 16px;display:flex;align-items:flex-start;gap:12px}
+.phase-icon-wrap{
+  width:44px;height:44px;flex-shrink:0;border-radius:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;border:1px solid rgba(255,255,255,.08);
+}
+.phase-meta{flex:1}
+.phase-label-small{font-size:9px;letter-spacing:3px;color:rgba(255,255,255,.4);margin-bottom:5px;text-transform:uppercase}
+.phase-name{font-size:22px;font-weight:800;letter-spacing:2px;line-height:1;margin-bottom:6px}
+.phase-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.phase-badge{
+  padding:2px 8px;border-radius:2px;font-size:9px;font-weight:700;letter-spacing:1px;
+  background:rgba(255,255,255,.07);color:rgba(255,255,255,.5);
+  border:1px solid rgba(255,255,255,.1);
+}
+.phase-desc{
+  padding:14px 16px;border-top:1px solid rgba(255,255,255,.06);
+  font-size:13px;line-height:1.88;color:rgba(255,255,255,.72);
+}
+
+/* Insight cards */
+.insight-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.insight-card{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:var(--r);padding:13px 14px;
+  position:relative;
+}
+.insight-card::before{
+  content:'';position:absolute;top:0;left:0;bottom:0;width:2px;border-radius:2px 0 0 2px;
+}
+.insight-card.ic-risk::before{background:linear-gradient(to bottom,var(--red),transparent)}
+.insight-card.ic-action::before{background:linear-gradient(to bottom,var(--green),transparent)}
+.insight-card-label{
+  font-size:9px;font-weight:700;letter-spacing:2px;margin-bottom:8px;
+  display:flex;align-items:center;gap:6px;text-transform:uppercase;
+}
+.insight-card-label .dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.dot-red{background:var(--red);box-shadow:0 0 5px var(--red)}
+.dot-green{background:var(--green);box-shadow:0 0 5px var(--green)}
+.label-red{color:var(--red)}.label-green{color:var(--green)}
+.insight-content{font-size:13px;line-height:1.75;color:var(--text1)}
+
+/* Score meters */
+.score-row{
+  background:var(--bg2);border:1px solid var(--border2);
+  border-radius:var(--r);padding:13px 14px;margin-bottom:10px;
+}
+.score-row-title{
+  font-size:9px;color:var(--text2);letter-spacing:2px;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:space-between;text-transform:uppercase;
+}
+.score-meters{display:flex;flex-direction:column;gap:9px}
+.meter-row{display:flex;align-items:center;gap:10px}
+.meter-label{width:44px;font-size:10px;color:var(--text2);flex-shrink:0;letter-spacing:.5px}
+.meter-track{
+  flex:1;height:4px;background:var(--bg3);
+  border-radius:2px;overflow:hidden;border:1px solid var(--border);
+}
+.meter-fill{height:100%;border-radius:2px;transition:width 1.2s cubic-bezier(.16,1,.3,1)}
+.meter-val{width:26px;font-size:10px;font-weight:700;color:var(--text0);text-align:right;flex-shrink:0}
+
+/* Trial notice */
+.trial-notice{
+  background:rgba(200,168,75,.03);
+  border:1px solid rgba(200,168,75,.12);
+  border-radius:var(--r);padding:12px 14px;margin-bottom:10px;
+}
+.trial-notice-title{
+  font-size:10px;font-weight:700;color:var(--gold3);
+  letter-spacing:2px;margin-bottom:8px;text-transform:uppercase;
+  display:flex;align-items:center;gap:6px;
+}
+.tn-diamond{
+  width:6px;height:6px;border:1px solid var(--gold4);
+  transform:rotate(45deg);flex-shrink:0;
+  animation:tn-pulse 3s ease infinite;
+}
+@keyframes tn-pulse{0%,100%{box-shadow:0 0 0 0 rgba(200,168,75,.3)}50%{box-shadow:0 0 0 4px rgba(200,168,75,.08)}}
+.trial-notice p{font-size:12px;color:var(--text2);line-height:1.75}
+.locked-items{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.locked-item{
+  display:flex;align-items:center;gap:4px;
+  padding:3px 9px;border-radius:2px;
+  background:var(--bg3);border:1px solid var(--border2);
+  font-size:10px;color:var(--text3);letter-spacing:.5px;
+}
+.locked-item::before{content:'○';font-size:8px}
+
+/* ─── CTA SECTION ─── */
+.cta-section{padding:0 16px;margin-top:8px}
+.cta-card{
+  background:var(--bg2);
+  border:1px solid var(--borderg);
+  border-radius:var(--r);padding:22px 18px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,168,75,.04) 0%,transparent 70%);
+  pointer-events:none;
+}
+/* 4 corners */
+.cta-card::after{
+  content:'';position:absolute;
+  bottom:-1px;right:-1px;width:12px;height:12px;
+  border-bottom:1px solid var(--gold3);border-right:1px solid var(--gold3);
+}
+.cta-card-tl{position:absolute;top:-1px;left:-1px;width:12px;height:12px;border-top:1px solid var(--gold3);border-left:1px solid var(--gold3)}
+.cta-card-tr{position:absolute;top:-1px;right:-1px;width:12px;height:12px;border-top:1px solid var(--gold3);border-right:1px solid var(--gold3)}
+.cta-card-bl{position:absolute;bottom:-1px;left:-1px;width:12px;height:12px;border-bottom:1px solid var(--gold3);border-left:1px solid var(--gold3)}
+
+.cta-headline{font-size:15px;font-weight:800;color:var(--text0);letter-spacing:.3px;line-height:1.5;margin-bottom:10px;position:relative}
+.cta-headline em{font-style:normal;background:linear-gradient(135deg,var(--gold3),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-body{font-size:12px;color:var(--text2);line-height:1.85;margin-bottom:18px;position:relative}
+.cta-features{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;text-align:left;position:relative}
+.cta-feat{
+  display:flex;align-items:center;gap:9px;
+  font-size:12px;color:var(--text1);
+  padding:8px 12px;
+  background:var(--bg3);border-radius:3px;
+  border:1px solid var(--border2);
+  border-left:2px solid var(--gold4);
+}
+.cta-feat-icon{font-size:14px;flex-shrink:0;opacity:.8}
+
+.cta-btn-primary{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,var(--gold4) 0%,var(--gold3) 50%,var(--gold) 100%);
+  color:#030608;font-size:14px;font-weight:800;
+  border-radius:3px;border:none;cursor:pointer;letter-spacing:2px;
+  box-shadow:0 0 20px rgba(200,168,75,.2);
+  transition:all .25s;text-decoration:none;margin-bottom:8px;
+  position:relative;overflow:hidden;
+}
+.cta-btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.12),transparent);
+  transform:translateX(-100%);transition:transform .5s;
+}
+.cta-btn-primary:hover::before{transform:translateX(100%)}
+.cta-btn-primary:hover{box-shadow:0 0 30px rgba(200,168,75,.35);transform:translateY(-1px)}
+
+.cta-btn-secondary{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:11px;
+  background:transparent;color:var(--text1);font-size:12px;
+  border-radius:3px;border:1px solid var(--border2);
+  cursor:pointer;transition:all .2s;text-decoration:none;margin-bottom:7px;
+  letter-spacing:.5px;
+}
+.cta-btn-secondary:hover{border-color:var(--gold4);color:var(--gold)}
+.cta-or{font-size:10px;color:var(--text3);margin:5px 0;letter-spacing:3px}
+
+/* ─── STICKY CTA ─── */
+.sticky-cta{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  padding:10px 16px;
+  padding-bottom:calc(10px + env(safe-area-inset-bottom,0px));
+  background:rgba(3,6,8,.95);
+  backdrop-filter:blur(16px);
+  border-top:1px solid var(--border2);
+  z-index:200;
+}
+.sticky-cta::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold4),transparent);
+}
+.sticky-cta.visible{display:block}
+.sticky-cta-btn{
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:100%;padding:12px;
+  background:linear-gradient(135deg,var(--gold4),var(--gold3),var(--gold));
+  color:#030608;font-size:13px;font-weight:800;
+  border-radius:3px;border:none;cursor:pointer;letter-spacing:2px;
+  box-shadow:0 0 16px rgba(200,168,75,.2);
+}
+
+/* ─── PHASE COLOR THEMES ─── */
+[data-phase="攻擊期"]{background:linear-gradient(135deg,rgba(224,80,32,.12),rgba(224,80,32,.04));border-color:rgba(224,80,32,.3)}
+[data-phase="攻擊期"] .phase-icon-wrap{background:rgba(224,80,32,.12);border-color:rgba(224,80,32,.2)}
+[data-phase="攻擊期"] .phase-name{color:#f09060}
+[data-phase="攻擊期"] .phase-card::before,[data-phase="攻擊期"] .phase-card::after{border-color:#f09060}
+
+[data-phase="修復期"]{background:linear-gradient(135deg,rgba(120,70,200,.12),rgba(120,70,200,.04));border-color:rgba(120,70,200,.3)}
+[data-phase="修復期"] .phase-icon-wrap{background:rgba(120,70,200,.12);border-color:rgba(120,70,200,.2)}
+[data-phase="修復期"] .phase-name{color:#b090e0}
+[data-phase="修復期"] .phase-card::before,[data-phase="修復期"] .phase-card::after{border-color:#b090e0}
+
+[data-phase="防守期"]{background:linear-gradient(135deg,rgba(40,120,240,.12),rgba(40,120,240,.04));border-color:rgba(40,120,240,.3)}
+[data-phase="防守期"] .phase-icon-wrap{background:rgba(40,120,240,.12);border-color:rgba(40,120,240,.2)}
+[data-phase="防守期"] .phase-name{color:#80b8f0}
+[data-phase="防守期"] .phase-card::before,[data-phase="防守期"] .phase-card::after{border-color:#80b8f0}
+
+[data-phase="觀察期"]{background:linear-gradient(135deg,rgba(210,170,30,.12),rgba(210,170,30,.04));border-color:rgba(210,170,30,.3)}
+[data-phase="觀察期"] .phase-icon-wrap{background:rgba(210,170,30,.12);border-color:rgba(210,170,30,.2)}
+[data-phase="觀察期"] .phase-name{color:#e0c060}
+[data-phase="觀察期"] .phase-card::before,[data-phase="觀察期"] .phase-card::after{border-color:#e0c060}
+
+[data-phase="累積期"]{background:linear-gradient(135deg,rgba(40,180,100,.12),rgba(40,180,100,.04));border-color:rgba(40,180,100,.3)}
+[data-phase="累積期"] .phase-icon-wrap{background:rgba(40,180,100,.12);border-color:rgba(40,180,100,.2)}
+[data-phase="累積期"] .phase-name{color:#60d890}
+[data-phase="累積期"] .phase-card::before,[data-phase="累積期"] .phase-card::after{border-color:#60d890}
+
+[data-phase="轉換期"]{background:linear-gradient(135deg,rgba(200,168,75,.12),rgba(200,168,75,.04));border-color:rgba(200,168,75,.3)}
+[data-phase="轉換期"] .phase-icon-wrap{background:rgba(200,168,75,.12);border-color:rgba(200,168,75,.2)}
+[data-phase="轉換期"] .phase-name{color:var(--gold2)}
+[data-phase="轉換期"] .phase-card::before,[data-phase="轉換期"] .phase-card::after{border-color:var(--gold2)}
+
+/* ─── FOOTER ─── */
+.site-footer{margin-top:32px;padding:18px 16px;border-top:1px solid var(--border);text-align:center}
+.footer-logo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px}
+.footer-text{font-size:9px;color:var(--text3);letter-spacing:2.5px;line-height:1.8}
+.footer-disclaimer{font-size:9px;color:var(--text3);margin-top:8px;line-height:1.6;opacity:.6}
+
+/* ─── FADE IN ─── */
+.fade-in{opacity:0;animation:fadeIn .6s ease forwards}
+@keyframes fadeIn{to{opacity:1}}
+.s1{animation-delay:.1s}.s2{animation-delay:.2s}.s3{animation-delay:.3s}
+
+/* ─── MOBILE SMALL ─── */
+@media(max-width:380px){
+  .site-header{padding:12px 14px}
+  .brand-text p{display:none}
+  .logo{width:30px;height:30px;font-size:14px}
+  .hero{padding:44px 14px 36px}
+  .hero h2{font-size:19px}
+  .qtype-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<!-- ─── HEADER ─── -->
+<header class="site-header">
+  <div class="brand">
+    <div class="logo"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="7.5" stroke="rgba(200,168,75,0.6)" stroke-width="0.8"></circle>
+  <circle cx="9" cy="9" r="4.5" stroke="rgba(200,168,75,0.35)" stroke-width="0.6"></circle>
+  <path d="M9 1.5 Q13 5 9 9 Q5 13 9 16.5" stroke="rgba(200,168,75,0.5)" stroke-width="0.7" fill="none"></path>
+  <circle cx="9" cy="5.5" r="1" fill="rgba(200,168,75,0.7)"></circle>
+  <circle cx="9" cy="12.5" r="1" fill="rgba(200,168,75,0.25)"></circle>
+</svg></div>
+    <div class="brand-text">
+      <h1>科學八字決策分析</h1>
+      <p>SCIENTIFIC BAZI DECISION SYSTEM</p>
+    </div>
+  </div>
+  <div class="trial-badge">TRIAL</div>
+</header>
+
+<div class="page-wrap">
+
+  <!-- ─── HERO ─── -->
+  <section class="hero fade-in">
+
+    <!-- Orbital watermark (logo deconstructed) -->
+    <div class="hero-orbital" aria-hidden="true">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+        <defs>
+          <lineargradient id="ringGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(200,168,75,0)"></stop>
+            <stop offset="50%" stop-color="rgba(200,168,75,0.18)"></stop>
+            <stop offset="100%" stop-color="rgba(200,168,75,0)"></stop>
+          </lineargradient>
+        </defs>
+        <!-- Outer ring with dash (orbital structure) -->
+        <g class="orb-ring-1" style="transform-origin:200px 200px">
+          <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(200,168,75,0.05)" stroke-width="1"></circle>
+          <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(200,168,75,0.1)" stroke-width="0.5" stroke-dasharray="2 18"></circle>
+        </g>
+        <!-- Middle ring -->
+        <circle cx="200" cy="200" r="148" fill="none" stroke="rgba(200,168,75,0.04)" stroke-width="1"></circle>
+        <!-- Inner ring -->
+        <g class="orb-ring-2">
+          <circle cx="200" cy="200" r="100" fill="none" stroke="rgba(64,144,240,0.06)" stroke-width="1"></circle>
+          <circle cx="200" cy="200" r="100" fill="none" stroke="rgba(64,144,240,0.1)" stroke-width="0.5" stroke-dasharray="3 12"></circle>
+        </g>
+        <!-- Five element pentagon (logo structure) -->
+        <polygon points="200,18 372,132 307,334 93,334 28,132" fill="none" stroke="rgba(200,168,75,0.04)" stroke-width="0.8"></polygon>
+        <!-- Element node dots -->
+        <circle cx="200" cy="18" r="3" fill="rgba(74,222,128,0.25)"></circle>   <!-- 木 Wood top -->
+        <circle cx="372" cy="132" r="3" fill="rgba(248,113,113,0.25)"></circle>  <!-- 火 Fire -->
+        <circle cx="307" cy="334" r="3" fill="rgba(251,191,36,0.25)"></circle>   <!-- 土 Earth -->
+        <circle cx="93" cy="334" r="3" fill="rgba(148,163,184,0.25)"></circle> <!-- 金 Metal -->
+        <circle cx="28" cy="132" r="3" fill="rgba(96,165,250,0.25)"></circle>   <!-- 水 Water -->
+        <!-- Yin-yang S-curve hint -->
+        <path d="M200,100 Q240,130 200,160 Q160,190 200,220 Q240,250 200,280" fill="none" stroke="rgba(200,168,75,0.05)" stroke-width="1"></path>
+        <!-- Cross-hair tick marks -->
+        <line x1="200" y1="4" x2="200" y2="22" stroke="rgba(200,168,75,0.1)" stroke-width="0.8"></line>
+        <line x1="200" y1="378" x2="200" y2="396" stroke="rgba(200,168,75,0.1)" stroke-width="0.8"></line>
+        <line x1="4" y1="200" x2="22" y2="200" stroke="rgba(200,168,75,0.1)" stroke-width="0.8"></line>
+        <line x1="378" y1="200" x2="396" y2="200" stroke="rgba(200,168,75,0.1)" stroke-width="0.8"></line>
+        <!-- Tiny center cross -->
+        <circle cx="200" cy="200" r="3" fill="none" stroke="rgba(200,168,75,0.15)" stroke-width="0.8"></circle>
+        <line x1="196" y1="200" x2="204" y2="200" stroke="rgba(200,168,75,0.2)" stroke-width="0.6"></line>
+        <line x1="200" y1="196" x2="200" y2="204" stroke="rgba(200,168,75,0.2)" stroke-width="0.6"></line>
+      </svg>
+    </div>
+
+    <!-- Radar sweep -->
+    <div class="hero-radar" aria-hidden="true"></div>
+
+    <!-- Data flow lines -->
+    <div class="hero-dataflow" aria-hidden="true">
+      <div class="dfl"></div><div class="dfl"></div><div class="dfl"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <div class="hero-eyebrow">決策節奏診斷</div>
+      <h2>你現在不是不努力，<br>是可能<em>用錯了決策節奏</em>。</h2>
+      <p class="hero-sub">輸入出生資料，30 秒測出你目前處在哪一個決策期，找到當下最適合你的行動策略。</p>
+      <button class="hero-cta" onclick="scrollToForm()">
+        <span>開始免費試用</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+      </button>
+      <div class="hero-trust">
+        <div class="trust-item"><div class="trust-dot"></div>30秒出結果</div>
+        <div class="trust-item"><div class="trust-dot"></div>資料不儲存</div>
+        <div class="trust-item"><div class="trust-dot"></div>完全免費</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── DIVIDER ─── -->
+  <div class="sec-divider fade-in s2">
+    <div class="sec-divider-inner">
+      <div class="sec-diamond"></div>
+      <span class="sec-divider-label">輸入資料</span>
+      <div class="sec-diamond"></div>
+    </div>
+  </div>
+
+  <!-- ─── FORM ─── -->
+  <section class="form-section fade-in s3" id="formSection">
+    <div class="form-card">
+      <div class="form-card-header">
+        <div class="form-card-header-icon">◈</div>
+        <div>
+          <div class="form-card-title">基本資料輸入</div>
+          <div class="form-card-sub">填寫越精確，結果越貼近你的實際狀態</div>
+        </div>
+      </div>
+      <div class="form-body">
+
+        <div class="fg" id="fg-date">
+          <label>出生日期 <span class="req">*</span></label>
+          <input type="date" id="t-date" max="2010-12-31">
+          <div class="field-error">請輸入出生日期</div>
+        </div>
+
+        <div class="fg">
+          <label>出生時間（不確定可選「不詳」）</label>
+          <select id="t-hour">
+            <option value="-1">— 不詳 / 記憶不清 —</option>
+            <option value="23">子時（23:00–01:00）</option>
+            <option value="1">丑時（01:00–03:00）</option>
+            <option value="3">寅時（03:00–05:00）</option>
+            <option value="5">卯時（05:00–07:00）</option>
+            <option value="7">辰時（07:00–09:00）</option>
+            <option value="9">巳時（09:00–11:00）</option>
+            <option value="11">午時（11:00–13:00）</option>
+            <option value="13">未時（13:00–15:00）</option>
+            <option value="15">申時（15:00–17:00）</option>
+            <option value="17">酉時（17:00–19:00）</option>
+            <option value="19">戌時（19:00–21:00）</option>
+            <option value="21">亥時（21:00–23:00）</option>
+          </select>
+        </div>
+
+        <div class="fg" id="fg-gender">
+          <label>性別 <span class="req">*</span></label>
+          <div class="gender-row">
+            <div class="gender-opt">
+              <input type="radio" name="t-gender" id="g-male" value="male">
+              <label for="g-male">♂ 男命</label>
+            </div>
+            <div class="gender-opt">
+              <input type="radio" name="t-gender" id="g-female" value="female">
+              <label for="g-female">♀ 女命</label>
+            </div>
+          </div>
+          <div class="field-error" id="gender-error">請選擇性別</div>
+        </div>
+
+        <div class="fg" id="fg-qtype">
+          <label>目前最想瞭解的方向 <span class="req">*</span></label>
+          <div class="qtype-grid">
+            <div class="qtype-chip"><input type="radio" name="t-qtype" id="q-career" value="事業"><label for="q-career"><span class="chip-icon">🏢</span>事業</label></div>
+            <div class="qtype-chip"><input type="radio" name="t-qtype" id="q-love" value="感情"><label for="q-love"><span class="chip-icon">💫</span>感情</label></div>
+            <div class="qtype-chip"><input type="radio" name="t-qtype" id="q-finance" value="財務"><label for="q-finance"><span class="chip-icon">📊</span>財務</label></div>
+            <div class="qtype-chip"><input type="radio" name="t-qtype" id="q-stuck" value="人生卡關"><label for="q-stuck"><span class="chip-icon">🧭</span>卡關</label></div>
+            <div class="qtype-chip"><input type="radio" name="t-qtype" id="q-startup" value="創業"><label for="q-startup"><span class="chip-icon">🚀</span>創業</label></div>
+            <div class="qtype-chip"><input type="radio" name="t-qtype" id="q-other" value="其他"><label for="q-other"><span class="chip-icon">✦</span>其他</label></div>
+          </div>
+          <div class="field-error" id="qtype-error">請選擇想瞭解的方向</div>
+        </div>
+
+        <button class="btn-analyze" id="analyzeBtn" onclick="runTrialAnalysis()">
+          <div class="spin"></div>
+          <span class="btn-label">▶ 開始分析我的決策期</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LOADING ─── -->
+  <div class="analyzing-overlay" id="analyzingOverlay">
+    <div class="ao-ring-wrap">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <lineargradient id="aoRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#5c4018"></stop>
+            <stop offset="100%" stop-color="#e2c060"></stop>
+          </lineargradient>
+        </defs>
+        <circle class="ao-ring-outer" cx="50" cy="50" r="47"></circle>
+        <circle class="ao-ring-outer-dash" cx="50" cy="50" r="47"></circle>
+        <circle class="ao-ring-bg" cx="50" cy="50" r="44"></circle>
+        <circle class="ao-ring-fill" cx="50" cy="50" r="44" id="aoRingFill"></circle>
+      </svg>
+      <div class="ao-pct-wrap">
+        <div class="ao-pct" id="aoPct">0</div>
+        <div class="ao-pct-sym">%</div>
+      </div>
+    </div>
+    <div class="ao-steps">
+      <div class="ao-step" id="aoStep0"><div class="ao-step-icon">⊹</div><div class="ao-step-label">解析四柱天干地支…</div></div>
+      <div class="ao-step" id="aoStep1"><div class="ao-step-icon">⊹</div><div class="ao-step-label">計算五行能量分佈…</div></div>
+      <div class="ao-step" id="aoStep2"><div class="ao-step-icon">⊹</div><div class="ao-step-label">比對流年大運節奏…</div></div>
+      <div class="ao-step" id="aoStep3"><div class="ao-step-icon">⊹</div><div class="ao-step-label">輸出決策期分類結果…</div></div>
+    </div>
+    <div class="ao-subtitle">ANALYZING · PLEASE WAIT</div>
+  </div>
+
+  <!-- ─── RESULT ─── -->
+  <section id="resultSection">
+    <div class="result-header">
+      <div class="result-header-label">Decision Phase Analysis</div>
+      <div class="result-header-name" id="resultName"></div>
+    </div>
+
+    <div class="phase-card" id="phaseCard">
+      <div class="phase-card-top">
+        <div class="phase-icon-wrap" id="phaseIcon"></div>
+        <div class="phase-meta">
+          <div class="phase-label-small">Current Phase</div>
+          <div class="phase-name" id="phaseName"></div>
+          <div class="phase-badges" id="phaseBadges"></div>
+        </div>
+      </div>
+      <div class="phase-desc" id="phaseDesc"></div>
+    </div>
+
+    <div class="insight-grid">
+      <div class="insight-card ic-risk">
+        <div class="insight-card-label"><div class="dot dot-red"></div><span class="label-red">目前不建議</span></div>
+        <div class="insight-content" id="riskContent"></div>
+      </div>
+      <div class="insight-card ic-action">
+        <div class="insight-card-label"><div class="dot dot-green"></div><span class="label-green">適合先做</span></div>
+        <div class="insight-content" id="actionContent"></div>
+      </div>
+    </div>
+
+    <div class="score-row">
+      <div class="score-row-title"><span>試用版節奏評分</span><span style="opacity:.5">TRIAL ESTIMATE</span></div>
+      <div class="score-meters" id="scoreMeters"></div>
+    </div>
+
+    <div class="trial-notice">
+      <div class="trial-notice-title"><div class="tn-diamond"></div>試用版簡析</div>
+      <p>以上結果僅根據命盤時間節奏進行粗略估算。完整報告深度分析命盤底層結構，提供精準決策建議。</p>
+      <div class="locked-items">
+        <div class="locked-item">命盤十神配置</div>
+        <div class="locked-item">五行平衡診斷</div>
+        <div class="locked-item">用神忌神分析</div>
+        <div class="locked-item">大運流年影響</div>
+        <div class="locked-item">風險量化分數</div>
+        <div class="locked-item">行動策略規劃</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-section" id="ctaSection">
+    <div class="cta-card">
+      <div class="cta-card-tl"></div>
+      <div class="cta-card-tr"></div>
+      <div class="cta-card-bl"></div>
+      <div class="cta-headline">試用版只能看見<em>表層節奏</em>。<br>真正影響你選擇的，<br>是命盤底層結構。</div>
+      <p class="cta-body">完整版分析深度解讀命盤結構、十神配置、五行流動，以及當期最關鍵的風險因子與行動策略。</p>
+      <div class="cta-features">
+        <div class="cta-feat"><span class="cta-feat-icon">🧬</span>命盤結構全解析</div>
+        <div class="cta-feat"><span class="cta-feat-icon">⚙️</span>十神配置邏輯</div>
+        <div class="cta-feat"><span class="cta-feat-icon">📈</span>大運流年推演</div>
+        <div class="cta-feat"><span class="cta-feat-icon">🎯</span>行動策略報告</div>
+      </div>
+      <a href="https://line.me/ti/p/~smilemusic1116" class="cta-btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"></path></svg>
+        加入 LINE 預約完整分析
+      </a>
+      <div class="cta-or">· · ·</div>
+      <a href="https://www.instagram.com/eightwordslife/" class="cta-btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"></path></svg>
+        私訊 Instagram
+      </a>
+      <div class="cta-or">· · ·</div>
+      <a href="mailto:berney0985@gmail.com" class="cta-btn-secondary">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        預約完整科學八字決策分析
+      </a>
+      <div class="cta-or">· · ·</div>
+      <a href="https://eightwordslife.com/" target="_blank" rel="noopener" class="cta-btn-secondary" style="border-color:var(--gold4);color:var(--gold3)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        eightwordslife.com
+      </a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-logo">
+      <div class="logo" style="width:24px;height:24px"><svg width="12" height="12" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="9" cy="9" r="7.5" stroke="rgba(200,168,75,0.5)" stroke-width="0.8"></circle>
+  <circle cx="9" cy="9" r="4.5" stroke="rgba(200,168,75,0.3)" stroke-width="0.6"></circle>
+  <path d="M9 1.5 Q13 5 9 9 Q5 13 9 16.5" stroke="rgba(200,168,75,0.45)" stroke-width="0.7" fill="none"></path>
+  <circle cx="9" cy="5.5" r="1" fill="rgba(200,168,75,0.6)"></circle>
+  <circle cx="9" cy="12.5" r="1" fill="rgba(200,168,75,0.2)"></circle>
+</svg></div>
+      <span style="font-size:10px;color:var(--text2);letter-spacing:2px">科學八字決策分析系統</span>
+    </div>
+    <div class="footer-text">SCIENTIFIC BAZI DECISION SYSTEM · V1.1 TRIAL</div>
+    <div class="footer-disclaimer">本試用版結果僅供參考，不構成任何財務、法律或醫療建議。</div>
+  </footer>
+</div>
+
+<!-- Sticky CTA -->
+<div class="sticky-cta visible" id="stickyCta">
+  <button class="sticky-cta-btn" onclick="scrollToCTA()">◈ 預約完整科學八字決策分析</button>
+</div>
+
+<script>
+'use strict';
+
+
+const PHASE_DATA = {
+  '攻擊期': {
+    icon: '⚡',
+    keywords: ['高能量', '主動出擊', '擴張'],
+    color: '#f09060',
+    scores: { momentum: 88, clarity: 72, risk: 65, timing: 82 },
+    descByQ: {
+      '事業':   '命局當前進入主動擴張的節奏，行動力與外部機會的交叉點正在接近。這段時間適合主動推進、建立關鍵連結，但要避免在資源尚未整合前過度分散。能量充沛，但需保持策略方向的清晰。',
+      '感情':   '情感能量偏向主動，有較強的表達慾望與向外建立連結的衝動。這個階段適合主動踏出第一步，但要注意節奏，避免因急於推進而造成對方壓力。',
+      '財務':   '財務決策節奏偏向進攻，市場嗅覺較靈敏，適合積極評估機會。但此期容易因判斷過快而忽視風險面，建議每一個決策前都進行結構性評估。',
+      '人生卡關': '目前的卡關感來自能量的累積正在臨界點，實際上已進入攻擊期的前緣，壓力感是行動前的必要摩擦。建議聚焦在一個突破口，而非全面鬆動。',
+      '創業':   '創業條件的時間節奏偏有利，外部環境與個人行動力的方向一致。可以進行關鍵資源鎖定與市場測試，但避免在還沒有最小閉環前就大規模投入。',
+      '其他':   '當前節奏偏向主動擴張，整體行動能量充沛。適合推進重要決策與建立連結，但要對風險保持清醒認知，避免被高能量掩蓋結構性問題。',
+    },
+    risk: { '事業':'全面鋪開、多線並行，導致資源分散', '感情':'催促進度、過度主動造成對方反感', '財務':'因高自信而跳過風險評估快速決策', '人生卡關':'繼續忍耐、不行動', '創業':'尚未驗證就投入大量資金', '其他':'過度樂觀、忽視結構風險' },
+    action: { '事業':'鎖定一個核心目標，集中資源突破', '感情':'在合適場合主動表達，給對方清晰的信號', '財務':'積極評估但保留30%安全邊際', '人生卡關':'選擇一個最小行動，立刻執行看反饋', '創業':'進行最小化市場驗證，測試核心假設', '其他':'選定最重要的一件事，全力推進' },
+  },
+  '修復期': {
+    icon: '🌱',
+    keywords: ['內部整合', '能量修復', '重建基礎'],
+    color: '#b090e0',
+    scores: { momentum: 38, clarity: 55, risk: 30, timing: 40 },
+    descByQ: {
+      '事業':   '命局進入結構性休整的節奏，外部擴張的時機尚未成熟。此時最重要的工作是內部系統的梳理與能力的深化，而非向外尋求突破。修復期的主要任務是為下一個爆發點建立穩固底座。',
+      '感情':   '感情能量偏向內斂，修復期中人際連結的質量比數量更重要。適合深化既有關係而非追求新連結，也是重新釐清自己在感情中真正需要什麼的關鍵時期。',
+      '財務':   '財務節奏偏向保守，現有資產的鞏固比新投入更優先。避免大額非必要支出，專注現金流管理與負債控制，這個期間的穩健比獲利更重要。',
+      '人生卡關': '目前的卡關感是修復期的正常狀態，強行突破反而容易消耗珍貴能量。這段時間適合向內探索，釐清造成卡關的根本原因，而不是用更多的行動來掩蓋問題。',
+      '創業':   '創業時機目前並不理想，修復期的能量結構不支持大規模向外擴張。若已創業，建議聚焦內部效率提升；若在評估是否開始，建議延後啟動時間點。',
+      '其他':   '當前命局節奏偏向修復與整合，不適合大規模新計畫的啟動。最有價值的行動是盤點現有資源，修復結構性的弱點，為下一個積極期做好準備。',
+    },
+    risk: { '事業':'強行啟動新計畫、忽視內部問題', '感情':'急於建立新關係來填補空缺感', '財務':'高風險投資、不必要的大額支出', '人生卡關':'越努力越焦慮，消耗能量而無進展', '創業':'此時啟動新創業項目', '其他':'貿然啟動重大新計畫' },
+    action: { '事業':'深化核心技能，梳理現有業務流程', '感情':'深化既有重要關係，誠實面對自己的情感需求', '財務':'控制支出、鞏固現金流，建立財務緩衝', '人生卡關':'暫停高強度行動，花時間做結構性自我盤點', '創業':'深度研究市場、優化商業模式，暫緩資本投入', '其他':'盤點資源、修復弱點，為下一期蓄積能量' },
+  },
+  '防守期': {
+    icon: '🛡',
+    keywords: ['風險控管', '穩守陣地', '被動應對'],
+    color: '#80b8f0',
+    scores: { momentum: 45, clarity: 60, risk: 38, timing: 50 },
+    descByQ: {
+      '事業':   '命局呈現防守型節奏，外部環境的不確定性偏高，此時最重要的不是進攻而是確保現有陣地不失守。重點在於維護關鍵關係、鞏固核心業務，避免不必要的資源消耗。',
+      '感情':   '感情節奏偏穩定防守，不適合做重大改變或冒險性的感情決策。現有感情的維護和鞏固比追求刺激更重要，這段時間需要更多耐心和穩定性。',
+      '財務':   '財務節奏偏向保守防守，資產保護的優先級高於增值。這個期間要特別注意現有資產的風險暴露，避免高槓桿操作，流動性管理是關鍵。',
+      '人生卡關': '防守期的卡關感來自外部壓力超過個人能量儲備，強行突破容易在脆弱時期造成更大的損失。此時最好的策略是先穩住、減少消耗，再評估局勢。',
+      '創業':   '防守期的外部環境對創業不利，風險係數偏高。已創業者需聚焦現金流管理與核心客戶維護；評估創業者建議等待更有利的時間節點。',
+      '其他':   '當前命局節奏偏向防守，外部環境壓力較大。最重要的是維護核心資源不受損耗，避免在不利環境中做重大決策，等待節奏轉好再積極行動。',
+    },
+    risk: { '事業':'在逆風期大舉擴張、消耗核心資源', '感情':'在不穩定時期做感情重大決定', '財務':'高槓桿操作或追高風險資產', '人生卡關':'逆勢強攻、在低能量期消耗過度', '創業':'在防守期投入大量資金啟動新業務', '其他':'在不利時機做重大決策或冒高風險' },
+    action: { '事業':'維護核心客戶關係，穩定現有業務基本盤', '感情':'維護穩定的關係質量，增加相處確定感', '財務':'降低風險暴露，增加流動性儲備', '人生卡關':'減少外部消耗，專注最重要的一件事', '創業':'聚焦現金流控制，強化客戶留存', '其他':'守住核心，避免在逆風期消耗寶貴資源' },
+  },
+  '觀察期': {
+    icon: '🔭',
+    keywords: ['資訊蒐集', '判斷觀望', '等待時機'],
+    color: '#e0c060',
+    scores: { momentum: 52, clarity: 78, risk: 55, timing: 60 },
+    descByQ: {
+      '事業':   '命局進入觀察等待的節奏，有足夠的清醒度看清格局，但行動的時機尚未到來。這段時間最有價值的事是深度研究競爭環境、蒐集決策所需資訊，讓下一次行動更有準度。',
+      '感情':   '感情節奏偏向觀察，有清醒度判斷關係的質量，但不急著做重大決定。這是認清對方與自己真實需求的好時機，讓感情在自然節奏中成長，不必強求速度。',
+      '財務':   '財務節奏適合深度研究與觀察市場，判斷力強但尚不到進場的最佳時機。這段時間適合建立投資框架、研究標的，為下一個進場機會做好準備。',
+      '人生卡關': '觀察期提供了從高處看清卡關根源的能力，這段時間最有價值的是停下來看清楚問題的本質，而不是繼續在迷霧中摸索行動。清晰才是當前最有力的武器。',
+      '創業':   '創業判斷力處於高峰，適合深度市場研究、訪談潛在用戶、打磨商業邏輯。但啟動行動的時機尚未到來，讓研究更充分後，下一步的決策會更精準。',
+      '其他':   '當前命局提供了清醒的判斷視角，適合深度思考與資訊蒐集。主動行動的節奏尚未到來，但這段等待不是浪費，而是讓下一步決策品質提升的關鍵準備期。',
+    },
+    risk: { '事業':'在資訊不足時倉促做重大決定', '感情':'因為不確定就急著給關係定性', '財務':'在觀察期錯過重要資訊就貿然進場', '人生卡關':'在還沒看清問題本質就衝動行動', '創業':'市場研究不足就倉促啟動', '其他':'在時機未到時貿然行動' },
+    action: { '事業':'深度研究市場與競爭環境，蒐集關鍵決策資訊', '感情':'認真觀察關係的質量，釐清自己真正的需求', '財務':'深入研究投資標的，建立清晰的進場條件', '人生卡關':'深度反思卡關的根本原因，找到真正的問題所在', '創業':'密集訪談潛在客戶，驗證核心假設', '其他':'深度思考，蒐集資訊，讓下一步行動更有準度' },
+  },
+  '累積期': {
+    icon: '📦',
+    keywords: ['能量蓄積', '低調深耕', '根基鞏固'],
+    color: '#60d890',
+    scores: { momentum: 62, clarity: 70, risk: 60, timing: 65 },
+    descByQ: {
+      '事業':   '命局進入深度累積的節奏，外在進展可能不明顯，但內部能量正在穩定增長。這個期間的努力具有複利效果，重點是持續在關鍵能力上投入，不要因為進度慢而放棄。',
+      '感情':   '感情節奏適合深度投入和長期累積，關係的質量正在穩定成長。這個階段不適合快速突進，而是通過持續的小事件讓彼此的信任與理解不斷加深。',
+      '財務':   '財務節奏偏向穩健累積，適合長期投資思維。這個期間的複利效應正在發揮，避免因短期波動而打亂長期佈局，持續的紀律性積累比一次性的冒進更有效。',
+      '人生卡關': '累積期的卡關感通常來自看不見成果，但實際上能量正在穩定成長中。最重要的是不要因為看不到立竿見影的結果而中途放棄，堅持就是當前最有力的策略。',
+      '創業':   '創業的累積期是打造核心競爭力的黃金時期，外部可能還看不到明顯成果，但正確的內部投入在這個期間具有最高的效率。要特別注意不被短期壓力迫使中斷長期建設。',
+      '其他':   '當前命局節奏適合深耕累積，持續的投入在這個期間具有超出預期的複利效果。外部進展可能不如預期明顯，但不要因此誤判方向，堅持才是這個節奏的核心策略。',
+    },
+    risk: { '事業':'因看不到短期成果而中途改變方向', '感情':'因節奏太慢而失去耐心、草率做決定', '財務':'因短期波動打亂長期佈局', '人生卡關':'看不到成果就放棄已有進展', '創業':'被短期壓力迫使中斷長期建設', '其他':'因進展緩慢而過早放棄' },
+    action: { '事業':'持續在核心技能上深耕，不被短期雜訊干擾', '感情':'通過小而持續的行動加深關係深度', '財務':'維持投資紀律，利用複利效應穩健累積', '人生卡關':'每天做一件推進的小事，積少成多', '創業':'專注核心產品打磨，建立不可替代的能力壁壘', '其他':'持續在最重要的方向上深耕，相信複利的力量' },
+  },
+  '轉換期': {
+    icon: '🌀',
+    keywords: ['系統性轉變', '跨域重組', '新結構建立'],
+    color: '#e0c060',
+    scores: { momentum: 70, clarity: 65, risk: 58, timing: 72 },
+    descByQ: {
+      '事業':   '命局正在進行結構性的轉換，舊有的模式與框架正在鬆動，新的可能性正在開啟。這個期間最重要的是辨識哪些是真正需要改變的，哪些是需要保留的核心，避免在轉換中迷失方向。',
+      '感情':   '感情正在經歷結構性的轉換節奏，關係模式的重新定義是這個階段的主題。無論是現有關係的深化轉型，還是舊關係的結束與新連結的開始，都需要清晰的意圖和耐心。',
+      '財務':   '財務結構正在轉換，舊有的資產配置可能需要調整，新的機會正在浮現。這個期間最重要的是在轉換過程中保持足夠的流動性，避免在結構重組時陷入流動性危機。',
+      '人生卡關': '轉換期的卡關通常意味著原有的框架已經不再適用，但新的框架還未建立完成。這是一個需要接受過渡期不確定性的時刻，釐清自己真正想要的方向是當前最重要的任務。',
+      '創業':   '轉換期的創業能量偏向重組與調整，適合商業模式的根本性優化。對於新創，這是重新思考定位的好時機；對於已有業務，可能需要勇於放棄不再有效的部分。',
+      '其他':   '當前命局正在進行系統性轉換，舊的模式正在鬆動，新的可能性正在開啟。這個期間需要保持高度清醒，辨識值得保留的核心與需要捨棄的包袱，才能在轉換中找到更好的方向。',
+    },
+    risk: { '事業':'在轉換期同時啟動太多新方向，造成結構性混亂', '感情':'在感情轉換期做出倉促的永久性決定', '財務':'在資產轉換過程中出現流動性危機', '人生卡關':'同時試圖改變太多事情', '創業':'在商業模式轉換期消耗全部現金儲備', '其他':'在結構轉換期做出不可逆的重大決定' },
+    action: { '事業':'清晰定義哪些核心要素需要保留，再規劃轉換路徑', '感情':'釐清自己在感情中真正的核心需求', '財務':'在轉換過程中保持充足的流動性，分步調整', '人生卡關':'聚焦在一個最重要的方向上進行轉換，而非全面改變', '創業':'明確商業模式轉換的目標方向，分階段執行', '其他':'先釐清目標方向，再穩步進行結構轉換' },
+  },
+};
+
+const PHASES = ['攻擊期','修復期','防守期','觀察期','累積期','轉換期'];
+const STEM_ELEMENTS = { 甲:0,乙:0,丙:1,丁:1,戊:2,己:2,庚:3,辛:3,壬:4,癸:4 };
+const TEN_STEMS = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const TWELVE_BRANCHES = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const BRANCH_ELEMENTS = [4,2,0,0,2,1,1,2,3,3,2,4];
+
+function getStemBranch(year,month,day,hour){
+  const yearStemIdx=(year-4)%10,yearBranchIdx=(year-4)%12;
+  const monthStemIdx=((year%5)*2+month)%10,monthBranchIdx=(month+1)%12;
+  const a=Math.floor((14-month)/12),y=year+4800-a,m=month+12*a-3;
+  const jdn=day+Math.floor((153*m+2)/5)+365*y+Math.floor(y/4)-Math.floor(y/100)+Math.floor(y/400)-32045;
+  const dayStemIdx=(jdn+49)%10,dayBranchIdx=(jdn+1)%12;
+  const hourBranchIdx=hour<0?-1:(Math.floor((hour+1)/2))%12;
+  const hourStemIdx=hour<0?-1:(dayStemIdx%5*2+hourBranchIdx)%10;
+  return{
+    year:{stem:TEN_STEMS[((yearStemIdx%10)+10)%10],branch:TWELVE_BRANCHES[((yearBranchIdx%12)+12)%12]},
+    month:{stem:TEN_STEMS[((monthStemIdx%10)+10)%10],branch:TWELVE_BRANCHES[((monthBranchIdx%12)+12)%12]},
+    day:{stem:TEN_STEMS[((dayStemIdx%10)+10)%10],branch:TWELVE_BRANCHES[((dayBranchIdx%12)+12)%12]},
+    hour:hour<0?null:{stem:TEN_STEMS[((hourStemIdx%10)+10)%10],branch:TWELVE_BRANCHES[((hourBranchIdx%12)+12)%12]},
+    dayElement:STEM_ELEMENTS[TEN_STEMS[((dayStemIdx%10)+10)%10]],
+  };
+}
+function calcElementScores(pillars){
+  const scores=[0,0,0,0,0];
+  [pillars.year,pillars.month,pillars.day,pillars.hour].filter(Boolean).forEach(p=>{
+    scores[STEM_ELEMENTS[p.stem]]+=2;
+    scores[BRANCH_ELEMENTS[TWELVE_BRANCHES.indexOf(p.branch)]]+=1;
+  });
+  return scores;
+}
+function getCurrentYearStem(){return TEN_STEMS[(new Date().getFullYear()-4)%10]}
+
+function generateTrialDecisionPhase(birthData,questionType){
+  const{year,month,day,hour,gender}=birthData;
+  const pillars=getStemBranch(year,month,day,hour);
+  const elements=calcElementScores(pillars);
+  const total=elements.reduce((a,b)=>a+b,0);
+  const dayEl=pillars.dayElement;
+  const curYearEl=STEM_ELEMENTS[getCurrentYearStem()];
+  const SHENG=[1,2,3,4,0],KE=[2,3,4,0,1];
+  const isSheng=SHENG[curYearEl]===dayEl,isKe=KE[curYearEl]===dayEl,isBi=curYearEl===dayEl;
+  const maxEl=Math.max(...elements),minEl=Math.min(...elements.filter(v=>v>0));
+  const balance=minEl>0?minEl/maxEl:0;
+  const dayElScore=elements[dayEl]/total;
+  const lunarPos=((new Date().getMonth()+1-month+12)%12)/12;
+  const agePhase=Math.floor((new Date().getFullYear()-year)/10)%6;
+  let ps={'攻擊期':0,'修復期':0,'防守期':0,'觀察期':0,'累積期':0,'轉換期':0};
+  if(isSheng){ps['攻擊期']+=3;ps['累積期']+=2}
+  if(isKe){ps['防守期']+=3;ps['修復期']+=2}
+  if(isBi){ps['觀察期']+=2;ps['轉換期']+=2}
+  if(balance>0.55)ps['攻擊期']+=2;else if(balance<0.25)ps['修復期']+=2;else{ps['觀察期']+=1;ps['累積期']+=1}
+  if(dayElScore>0.28){ps['攻擊期']+=2;ps['轉換期']+=1}else if(dayElScore<0.12){ps['防守期']+=2;ps['修復期']+=1}else{ps['累積期']+=2;ps['觀察期']+=1}
+  if(lunarPos<0.2)ps['攻擊期']+=2;else if(lunarPos<0.4)ps['累積期']+=2;else if(lunarPos<0.55)ps['觀察期']+=2;else if(lunarPos<0.7)ps['轉換期']+=2;else if(lunarPos<0.85)ps['防守期']+=2;else ps['修復期']+=2;
+  ps[PHASES[agePhase]]+=2;
+  const qb={'事業':'攻擊期','感情':'累積期','財務':'觀察期','人生卡關':'轉換期','創業':'攻擊期','其他':'觀察期'};
+  if(qb[questionType])ps[qb[questionType]]+=1;
+  if(gender==='female'){ps['累積期']+=1;ps['攻擊期']-=1}
+  const phase=Object.entries(ps).sort((a,b)=>b[1]-a[1])[0][0];
+  return{phase,pillars,elements,total};
+}
+
+function scrollToForm(){document.getElementById('formSection').scrollIntoView({behavior:'smooth',block:'start'})}
+function scrollToCTA(){document.getElementById('ctaSection').scrollIntoView({behavior:'smooth',block:'start'})}
+
+function validateForm(){
+  let ok=true;
+  const dateEl=document.getElementById('t-date'),fgDate=document.getElementById('fg-date');
+  if(!dateEl.value){fgDate.classList.add('has-error');ok=false}else fgDate.classList.remove('has-error');
+  const gv=document.querySelector('input[name="t-gender"]:checked'),fgG=document.getElementById('fg-gender'),gErr=document.getElementById('gender-error');
+  if(!gv){fgG.classList.add('has-error');gErr.style.display='block';ok=false}else{fgG.classList.remove('has-error');gErr.style.display='none'}
+  const qv=document.querySelector('input[name="t-qtype"]:checked'),fgQ=document.getElementById('fg-qtype'),qErr=document.getElementById('qtype-error');
+  if(!qv){fgQ.classList.add('has-error');qErr.style.display='block';ok=false}else{fgQ.classList.remove('has-error');qErr.style.display='none'}
+  return ok;
+}
+
+function runTrialAnalysis(){
+  if(!validateForm())return;
+  const btn=document.getElementById('analyzeBtn');
+  const overlay=document.getElementById('analyzingOverlay');
+  const resultSec=document.getElementById('resultSection');
+  const pctEl=document.getElementById('aoPct');
+  const ringEl=document.getElementById('aoRingFill');
+  const CIRCUM=276;
+  pctEl.textContent='0';ringEl.style.strokeDashoffset=CIRCUM;
+  [0,1,2,3].forEach(i=>{const s=document.getElementById('aoStep'+i);s.classList.remove('active','done');s.querySelector('.ao-step-icon').textContent='⊹'});
+  btn.classList.add('loading');overlay.classList.add('active');resultSec.style.display='none';
+  const dateVal=document.getElementById('t-date').value;
+  const[year,month,day]=dateVal.split('-').map(Number);
+  const hour=parseInt(document.getElementById('t-hour').value,10);
+  const gender=document.querySelector('input[name="t-gender"]:checked').value;
+  const questionType=document.querySelector('input[name="t-qtype"]:checked').value;
+  const birthData={year,month,day,hour,gender};
+  const STEPS=[{start:0,end:380,idx:0,pFrom:0,pTo:25},{start:380,end:750,idx:1,pFrom:25,pTo:55},{start:750,end:1150,idx:2,pFrom:55,pTo:80},{start:1150,end:1550,idx:3,pFrom:80,pTo:100}];
+  const TOTAL=1550;
+  let startTime=null,currentStep=-1;
+  function easeOut(t){return 1-Math.pow(1-t,2)}
+  function animFrame(ts){
+    if(!startTime)startTime=ts;
+    const elapsed=ts-startTime,progress=Math.min(elapsed/TOTAL,1);
+    let activeIdx=STEPS.findIndex(s=>elapsed>=s.start&&elapsed<s.end);
+    if(activeIdx===-1&&elapsed>=TOTAL)activeIdx=3;
+    let pct=0;
+    if(activeIdx>=0){const s=STEPS[activeIdx];const sp=Math.min((elapsed-s.start)/(s.end-s.start),1);pct=Math.round(s.pFrom+easeOut(sp)*(s.pTo-s.pFrom))}
+    pct=Math.min(pct,100);
+    ringEl.style.strokeDashoffset=CIRCUM-(pct/100)*CIRCUM;
+    pctEl.textContent=pct;
+    if(activeIdx!==currentStep){
+      if(currentStep>=0){const p=document.getElementById('aoStep'+currentStep);p.classList.remove('active');p.classList.add('done');p.querySelector('.ao-step-icon').textContent='✓'}
+      if(activeIdx>=0)document.getElementById('aoStep'+activeIdx).classList.add('active');
+      currentStep=activeIdx;
+    }
+    if(progress<1){requestAnimationFrame(animFrame)}else{
+      [0,1,2,3].forEach(i=>{const s=document.getElementById('aoStep'+i);s.classList.remove('active');s.classList.add('done');s.querySelector('.ao-step-icon').textContent='✓'});
+      pctEl.textContent='100';ringEl.style.strokeDashoffset=0;
+      setTimeout(()=>{
+        try{const result=generateTrialDecisionPhase(birthData,questionType);renderResult(result,birthData,questionType)}catch(e){console.error(e)}
+        btn.classList.remove('loading');overlay.classList.remove('active');
+        document.getElementById('stickyCta').classList.add('visible');
+        setTimeout(()=>document.getElementById('resultSection').scrollIntoView({behavior:'smooth',block:'start'}),100);
+      },180);
+    }
+  }
+  requestAnimationFrame(animFrame);
+}
+
+function renderResult(result,birthData,questionType){
+  const{phase,pillars}=result;
+  const data=PHASE_DATA[phase];
+  document.getElementById('resultName').textContent=pillars.day.stem+'日 · '+questionType+'方向';
+  const pc=document.getElementById('phaseCard');
+  pc.setAttribute('data-phase',phase);
+  document.getElementById('phaseIcon').textContent=data.icon;
+  document.getElementById('phaseName').textContent=phase;
+  document.getElementById('phaseBadges').innerHTML=data.keywords.map(k=>`<span class="phase-badge">${k}</span>`).join('');
+  document.getElementById('phaseDesc').textContent=data.descByQ[questionType]||data.descByQ['其他'];
+  document.getElementById('riskContent').textContent=data.risk[questionType]||data.risk['其他'];
+  document.getElementById('actionContent').textContent=data.action[questionType]||data.action['其他'];
+  const sL={momentum:'行動力',clarity:'判斷力',risk:'抗風險',timing:'時機分'};
+  const sC={momentum:'#c8a84b',clarity:'#60a5fa',risk:'#30c870',timing:'#f87171'};
+  let html='';
+  for(const[k,l]of Object.entries(sL)){const v=data.scores[k];html+=`<div class="meter-row"><div class="meter-label">${l}</div><div class="meter-track"><div class="meter-fill" style="width:0%;background:${sC[k]}" data-target="${v}"></div></div><div class="meter-val">${v}</div></div>`}
+  document.getElementById('scoreMeters').innerHTML=html;
+  setTimeout(()=>document.querySelectorAll('.meter-fill').forEach(el=>el.style.width=el.getAttribute('data-target')+'%'),200);
+  document.getElementById('resultSection').style.display='block';
+}
+
+(function(){
+  const s=document.getElementById('stickyCta');let v=false;
+  window.addEventListener('scroll',()=>{if(window.scrollY>400&&!v){v=true;s.classList.add('visible')}},{passive:true});
+})();
+
+</script>
+
+</body></html>
